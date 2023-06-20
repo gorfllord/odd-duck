@@ -1,8 +1,8 @@
-# LAB - 9
+# LAB - 11
 
-## Cookie Stand
+## Odd Duck Product Co
 
-Build an app that estimates cookie sales by location and displays them in a table. Also build a webpage to display it and a parent site that explains the mission of the cookie business. The sales page can also input new entries from a form that will update the table.
+Build an app that displays three images, logs the amount of times each image is viewed and clicked on, then displaying a different set of images until you've completed the number of rounds. After that, you can click the "view results" button to display the results of those rounds. You can change the number of rounds, but they default to 25.
 
 ### Author: Geoff Lloyd
 
@@ -18,4 +18,4 @@ Build an app that estimates cookie sales by location and displays them in a tabl
 
 ### Reflections and Comments
 
-* 
+* Tripped over a few things, but mostly just simpler little flubs rather than wholesale logical fallicies. Otherwise it went pretty smoothly, despite it taking a number of hours to get everything finished.
