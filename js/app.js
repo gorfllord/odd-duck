@@ -13,7 +13,7 @@ let productArr = [];
 function Product(name, fileType = 'jpg') {
   this.name = name,
   this.fileType = fileType,
-  this.src = `../assets/${this.name}.${fileType}`;
+  this.src = `${this.name}.${fileType}`;
   this.views = 0,
   this.votes = 0,
   productArr.push(this);
