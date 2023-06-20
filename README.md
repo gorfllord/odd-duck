@@ -8,13 +8,14 @@ Build an app that estimates cookie sales by location and displays them in a tabl
 
 ### Links and Resources
 
-* [submission PR](https://github.com/gorfllord/cookie-stand/pull/3)
-* [live link](https://gorfllord.github.io/cookie-stand)
+* [submission PR](https://github.com/gorfllord/odd-duck/pull/1)
+* [live link](https://gorfllord.github.io/odd-duck)
+* [logo duck pic](https://www.freepik.com/free-vector/cool-duck-summer-cartoon-vector-icon-illustration-animal-holiday-icon-concept-isolated-premium-vector-flat-cartoon-style_18305527.htm#query=funny%20duck&position=0&from_view=keyword&track=ais)
 
 ### Lighthouse Accessibility Report Score
 
-* ![Lighthouse Accessibility Report Score](cookie-stand-accessibility-score.png)
+* ![Lighthouse Accessibility Report Score](odd-duck-accessibility-score.png)
 
 ### Reflections and Comments
 
-* An important note is that I decided to get a little extra and make separate pages for the pages in the nav bar, which means I spread out some of the picture assets across multiple pages. Mostly the deviant is the T-Shirt picture which I threw just on the Merch page. Clicking the logo in the header takes you back to index.html.
+* 
