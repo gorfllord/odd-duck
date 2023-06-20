@@ -6,9 +6,12 @@ let image3 = document.getElementById('image3');
 let results = document.querySelector('ul');
 let viewResults = document.getElementById('viewResults');
 let roundsForm = document.querySelector('form');
+let resultsChart = document.getElementById('chart');
+let barChart; // This will become the chart object, need it to be global for reset functionality
 let maxRounds = 25;
 let currentRound = 0;
 let productArr = [];
+let indexArr = [];
 
 function Product(name, fileType = 'jpg') {
   this.name = name,
@@ -23,32 +26,32 @@ function getRandom(arr) {
   return random;
 }
 function render(arr) {
-  let index1 = getRandom(arr);
-  let index2 = getRandom(arr);
-  let index3 = getRandom(arr);
-  image1.src = arr[index1].src;
-  image1.alt = arr[index1].name;
-  arr[index1].views++;
-  while (index1 === index2) {
-    index2 = getRandom(arr);
+  while (indexArr.length < 6) {
+    let indexFill = getRandom(arr);
+    if (!indexArr.includes(indexFill)) {
+      indexArr.push(indexFill);
+    }
   }
-  image2.src = arr[index2].src;
-  image2.alt = arr[index2].name;
-  arr[index2].views++;
-  while (index3 === index1 || index3 === index2) {
-    index3 = getRandom(arr);
-  }
-  image3.src = arr[index3].src;
-  image3.alt = arr[index3].name;
-  arr[index3].views++;
+  let index1 = indexArr.shift();
+  let index2 = indexArr.shift();
+  let index3 = indexArr.shift();
+  image1.src = productArr[index1].src;
+  image1.alt = productArr[index1].name;
+  productArr[index1].views++;
+  image2.src = productArr[index2].src;
+  image2.alt = productArr[index2].name;
+  productArr[index2].views++;
+  image3.src = productArr[index3].src;
+  image3.alt = productArr[index3].name;
+  productArr[index3].views++;
 }
 function renderResults() {
-  results.innerHTML = '';
   for (let i = 0; i < productArr.length; i++) {
     let li = document.createElement('li');
     li.textContent = `${productArr[i].name}: ${productArr[i].views} views and ${productArr[i].votes} votes`;
     results.appendChild(li);
   }
+  renderChart();
 }
 function handleProductClick(event) {
   currentRound++;
@@ -56,11 +59,9 @@ function handleProductClick(event) {
   for (let i = 0; i < productArr.length; i++) {
     if (clickedItem === productArr[i].name) {
       productArr[i].votes++;
-      console.log(productArr[i]);
       break;
     }
   }
-  console.log(maxRounds);
   if (maxRounds === currentRound) {
     images.removeEventListener('click', handleProductClick);
     viewResults.addEventListener('click', renderResults);
@@ -72,7 +73,6 @@ function handleProductClick(event) {
 function handleRoundSubmit(event) {
   event.preventDefault();
   maxRounds = parseInt(event.target.numRounds.value);
-  console.log(typeof maxRounds);
   for (let i = 0; i < productArr.length; i++) {
     productArr[i].views = 0;
     productArr[i].votes = 0;
@@ -80,8 +80,48 @@ function handleRoundSubmit(event) {
   currentRound = 0;
   images.addEventListener('click', handleProductClick);
   viewResults.removeEventListener('click', renderResults);
-  viewResults.className = '';
+  viewResults.className = 'clicksNotAllowed';
+  barChart.destroy();
+  results.innerHTML = '';
   render(productArr);
+}
+function renderChart() {
+  let productNames = [];
+  let productViews = [];
+  let productVotes = [];
+  for (let i = 0; i < productArr.length; i++) {
+    productNames.push(productArr[i].name);
+    productViews.push(productArr[i].views);
+    productVotes.push(productArr[i].votes);
+  }
+  Chart.defaults.color = '#000';
+  barChart = new Chart(resultsChart, {
+    type: 'bar',
+    data: {
+      labels: productNames,
+      datasets: [{
+        label: '# of Votes',
+        data: productVotes,
+        borderWidth: 2,
+        backgroundColor: '#0147AB',
+        borderColor: '#000080'
+      },
+      {
+        label: '# of Views',
+        data: productViews,
+        borderWidth: 2,
+        backgroundColor: '#A45EE9',
+        borderColor: '#4B0076'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 }
 images.addEventListener('click', handleProductClick);
 roundsForm.addEventListener('submit', handleRoundSubmit);
