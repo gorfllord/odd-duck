@@ -7,11 +7,14 @@ header {
   margin: auto;
   justify-content: left;
   align-items: center;
+  background-color: lavender;
 }
 #logo {
   height: 150px;
   width: 150px;
-  padding: 5px;
+  margin: 10px;
+  margin-left: 15px;
+  border: 1px solid blue;
 }
 h1 {
   padding-left: 2rem;
@@ -23,15 +26,35 @@ main {
   grid-template-columns: 19% 27% 27% 27%;
   grid-template-rows: 1fr 1fr;
   row-gap: 5%;
+  min-width: 800px;
 }
 #resultsSidebar {
   grid-area: 1 / 1 / 3 / 2;
-  background-color: coral;
+  background-color: rgb(243, 155, 123);
 }
-#viewResults {
+fieldset {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin: auto;
+  justify-items: center;
+  align-items: center;
+}
+legend {
+  text-align: center;
+  padding-top: 5px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+button {
+  margin-top: 5px;
+}
+div {
   display: flex;
   height: 3rem;
   width: 8rem;
+  font-family: helvetica, arial, sans-serif;
+  font-weight: bold;
   background-color: orchid;
   margin: auto;
   margin-top: 1rem;
@@ -40,12 +63,36 @@ main {
   border: 1px solid black;
   border-radius: 2rem;
 }
+h2 {
+  font-family: "dekko", "comic sans ms", cursive;
+  font-size: 2rem;
+  font-weight: bold;
+}
 #results {
-  display: hidden;
+  padding: 10px;
+  padding-left: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+li {
+  padding-top: 7px;
+}
+li:first-letter {
+  text-transform: capitalize;
 }
 #images {
   grid-area: 1 / 2 / 2 / 5;
   background-color: rgb(194, 243, 243);
+  display: flex;
+  margin: auto;
+  width: 100%;
+  justify-content: space-between;
+
+}
+#images img {
+  display: inline-block;
+  height: 400px;
+  width: 400px;
+  padding: 2rem;
 }
 #text {
   grid-area: 2 / 2 / 3 / 5;
@@ -56,4 +103,20 @@ main {
 #text p {
   font-family: helvetica, arial, sans-serif;
   padding-bottom: 15px;
+}
+.clicksAllowed {
+  background-color: skyblue;
+}
+footer {
+  display: flex;
+  height: 4rem;
+  margin: auto;
+  justify-content: center;
+  align-content: center;
+  background-color: rgb(241, 241, 152);
+}
+footer p {
+  color: black;
+  font-family:'Times New Roman', Times, serif;
+  margin: auto;
 }
