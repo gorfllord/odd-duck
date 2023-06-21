@@ -1,8 +1,8 @@
-# LAB - 12
+# LAB - 13
 
 ## Odd Duck Product Co
 
-Build an app that displays three images, logs the amount of times each image is viewed and clicked on, then displaying a different set of images until you've completed the number of rounds. After that, you can click the "view results" button to display the results of those rounds. You can change the number of rounds, but they default to 25.
+Build an app that displays three images, logs the amount of times each image is viewed and clicked on, then displaying a different set of images until you've completed the number of rounds. After that, you can click the "view results" button to display the results of those rounds. You can change the number of rounds, but they default to 25. The data is stored in local storage so that it will remember the data from previous sessions.
 
 ### Author: Geoff Lloyd
 
@@ -19,4 +19,4 @@ Build an app that displays three images, logs the amount of times each image is 
 
 ### Reflections and Comments
 
-* Today went smoother, honestly the only thing that took time was me fine-tuning some CSS things for the vibes and trying to wrangle the positioning of the graph. Plus I had to work through some troubleshooting to try to get the graph to reset when you choose a new number of rounds and start again, but I found it!
+* This lab went pretty quickly, I think I picked up on the concepts and implementation pretty quickly.

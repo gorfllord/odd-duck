@@ -12,7 +12,20 @@ let maxRounds = 25;
 let currentRound = 0;
 let productArr = [];
 let indexArr = [];
+let storedData;
+let initData = localStorage.getItem('products');
 
+function checkStorage() {
+  if (initData) {
+    let storedProducts = localStorage.getItem('products');
+    storedData = JSON.parse(storedProducts);
+    for (let i = 0; i < productArr.length; i++) {
+      productArr[i].name = storedData[i].name;
+      productArr[i].views = storedData[i].views;
+      productArr[i].votes = storedData[i].votes;
+    }
+  }
+}
 function Product(name, fileType = 'jpg') {
   this.name = name,
   this.fileType = fileType,
@@ -51,6 +64,8 @@ function renderResults() {
     li.textContent = `${productArr[i].name}: ${productArr[i].views} views and ${productArr[i].votes} votes`;
     results.appendChild(li);
   }
+  let storedProducts = localStorage.getItem('products');
+  storedData = JSON.parse(storedProducts);
   renderChart();
 }
 function handleProductClick(event) {
@@ -66,17 +81,17 @@ function handleProductClick(event) {
     images.removeEventListener('click', handleProductClick);
     viewResults.addEventListener('click', renderResults);
     viewResults.className = 'clicksAllowed';
+    let productString = JSON.stringify(productArr);
+    localStorage.setItem('products', productString);
   } else {
     render(productArr);
   }
 }
 function handleRoundSubmit(event) {
   event.preventDefault();
+  let productString = JSON.stringify(productArr);
+  localStorage.setItem('products', productString);
   maxRounds = parseInt(event.target.numRounds.value);
-  for (let i = 0; i < productArr.length; i++) {
-    productArr[i].views = 0;
-    productArr[i].votes = 0;
-  }
   currentRound = 0;
   images.addEventListener('click', handleProductClick);
   viewResults.removeEventListener('click', renderResults);
@@ -90,9 +105,9 @@ function renderChart() {
   let productViews = [];
   let productVotes = [];
   for (let i = 0; i < productArr.length; i++) {
-    productNames.push(productArr[i].name);
-    productViews.push(productArr[i].views);
-    productVotes.push(productArr[i].votes);
+    productNames.push(storedData[i].name);
+    productViews.push(storedData[i].views);
+    productVotes.push(storedData[i].votes);
   }
   Chart.defaults.color = '#000';
   barChart = new Chart(resultsChart, {
@@ -126,24 +141,25 @@ function renderChart() {
 images.addEventListener('click', handleProductClick);
 roundsForm.addEventListener('submit', handleRoundSubmit);
 
-let bag = new Product('bag');
-let banana = new Product('banana');
-let bathroom = new Product('bathroom');
-let boots = new Product('boots');
-let breakfast = new Product('breakfast');
-let bubblegum = new Product('bubblegum');
-let chair = new Product('chair');
-let cthulhu = new Product('cthulhu');
-let dogDuck = new Product('dog-duck');
-let dragon = new Product('dragon');
-let pen = new Product('pen');
-let petSweep = new Product('pet-sweep');
-let scissors = new Product('scissors');
-let shark = new Product('shark');
-let sweep = new Product('sweep', 'png');
-let tauntaun = new Product('tauntaun');
-let unicorn = new Product('unicorn');
-let waterCan = new Product('water-can');
-let wineGlass = new Product('wine-glass');
+new Product('bag');
+new Product('banana');
+new Product('bathroom');
+new Product('boots');
+new Product('breakfast');
+new Product('bubblegum');
+new Product('chair');
+new Product('cthulhu');
+new Product('dog-duck');
+new Product('dragon');
+new Product('pen');
+new Product('pet-sweep');
+new Product('scissors');
+new Product('shark');
+new Product('sweep', 'png');
+new Product('tauntaun');
+new Product('unicorn');
+new Product('water-can');
+new Product('wine-glass');
 
+checkStorage();
 render(productArr);
