@@ -69,22 +69,24 @@ function renderResults() {
   renderChart();
 }
 function handleProductClick(event) {
-  currentRound++;
   let clickedItem = event.target.alt;
-  for (let i = 0; i < productArr.length; i++) {
-    if (clickedItem === productArr[i].name) {
-      productArr[i].votes++;
-      break;
+  if (clickedItem) {
+    currentRound++;
+    for (let i = 0; i < productArr.length; i++) {
+      if (clickedItem === productArr[i].name) {
+        productArr[i].votes++;
+        break;
+      }
     }
-  }
-  if (maxRounds === currentRound) {
-    images.removeEventListener('click', handleProductClick);
-    viewResults.addEventListener('click', renderResults);
-    viewResults.className = 'clicksAllowed';
-    let productString = JSON.stringify(productArr);
-    localStorage.setItem('products', productString);
-  } else {
-    render(productArr);
+    if (maxRounds === currentRound) {
+      images.removeEventListener('click', handleProductClick);
+      viewResults.addEventListener('click', renderResults);
+      viewResults.className = 'clicksAllowed';
+      let productString = JSON.stringify(productArr);
+      localStorage.setItem('products', productString);
+    } else {
+      render(productArr);
+    }
   }
 }
 function handleRoundSubmit(event) {
