@@ -15,6 +15,7 @@ let indexArr = [];
 let storedData;
 let initData = localStorage.getItem('products');
 
+// This will check it a file exists in local storage to pull data from
 function checkStorage() {
   if (initData) {
     let storedProducts = localStorage.getItem('products');
@@ -26,6 +27,8 @@ function checkStorage() {
     }
   }
 }
+// Construction function, what's your function? Hookin' up keys with values and methods
+// But actually, it takes in the name and filetype and intializes each product object
 function Product(name, fileType = 'jpg') {
   this.name = name,
   this.fileType = fileType,
@@ -34,10 +37,12 @@ function Product(name, fileType = 'jpg') {
   this.votes = 0,
   productArr.push(this);
 }
+// Random number generator
 function getRandom(arr) {
   let random = Math.floor(Math.random() * arr.length);
   return random;
 }
+// This will add images to the cue, then render the left-most three images in the cue array
 function render(arr) {
   while (indexArr.length < 6) {
     let indexFill = getRandom(arr);
@@ -58,6 +63,7 @@ function render(arr) {
   image3.alt = productArr[index3].name;
   productArr[index3].views++;
 }
+// This will render the results and invoke the chart to use the data it passes to it
 function renderResults() {
   for (let i = 0; i < productArr.length; i++) {
     let li = document.createElement('li');
@@ -68,6 +74,8 @@ function renderResults() {
   storedData = JSON.parse(storedProducts);
   renderChart();
 }
+// This processes what to do in case the user clicks on an image, in this case add a vote to that product, then check the current round with the max rounds
+// to then see if it's time to wrap things up and activate the view results button
 function handleProductClick(event) {
   let clickedItem = event.target.alt;
   if (clickedItem) {
@@ -89,6 +97,7 @@ function handleProductClick(event) {
     }
   }
 }
+// This will change the max rounds and reset everything for a new round. It will save the current progress as well.
 function handleRoundSubmit(event) {
   event.preventDefault();
   let productString = JSON.stringify(productArr);
@@ -102,6 +111,7 @@ function handleRoundSubmit(event) {
   results.innerHTML = '';
   render(productArr);
 }
+// This function processes the productArr array to pull the names, votes, and views to then pass to the bar chart
 function renderChart() {
   let productNames = [];
   let productViews = [];
@@ -140,9 +150,11 @@ function renderChart() {
     }
   });
 }
+// Adding event listeners for clicks or the submit button
 images.addEventListener('click', handleProductClick);
 roundsForm.addEventListener('submit', handleRoundSubmit);
 
+// initializing products
 new Product('bag');
 new Product('banana');
 new Product('bathroom');
@@ -163,5 +175,7 @@ new Product('unicorn');
 new Product('water-can');
 new Product('wine-glass');
 
+// Invoking function to check if anything is in local storage, then it will overwrite the initialized data with the stored data
 checkStorage();
+// Invoking render to have images available when the page loads
 render(productArr);
