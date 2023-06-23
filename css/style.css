@@ -98,10 +98,15 @@ li:first-letter {
   height: 300px;
   width: 300px;
   border: 3px solid transparent;
+  transition-duration: 0.2s;
 }
 #images img:hover, .clicksAllowed:hover {
   cursor: pointer;
   border: 3px solid #00f;
+}
+#images img:active {
+  transform: scale(0.7);
+  transition-duration: 0.2s;
 }
 #chartSection {
   grid-area: 2 / 2 / 3 / 5;
