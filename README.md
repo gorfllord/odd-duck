@@ -1,4 +1,4 @@
-# LAB - 13
+# LAB - 15b
 
 ## Odd Duck Product Co
 
@@ -8,7 +8,7 @@ Build an app that displays three images, logs the amount of times each image is 
 
 ### Links and Resources
 
-* [submission PR](https://github.com/gorfllord/odd-duck/pull/2)
+* [submission PR](https://github.com/gorfllord/odd-duck/pull/4)
 * [live link](https://gorfllord.github.io/odd-duck)
 * [logo duck pic](https://www.freepik.com/free-vector/cool-duck-summer-cartoon-vector-icon-illustration-animal-holiday-icon-concept-isolated-premium-vector-flat-cartoon-style_18305527.htm#query=funny%20duck&position=0&from_view=keyword&track=ais)
 * [Chart.js](https://www.chartjs.org/)
